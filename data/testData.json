@@ -1,0 +1,23 @@
+{
+  "users": {
+    "testuser": {
+      "username": "playwrightuser",
+      "password": "playwrightpass123"
+    },
+    "backup": {
+      "username": "testuser2024",
+      "password": "testpass2024"
+    }
+  },
+  "products": {
+    "monitor": {
+      "name": "Apple monitor 24",
+      "category": "Monitors"
+    }
+  },
+  "environments": {
+    "qa": "https://qa.demoblaze.com",
+    "uat": "https://uat.demoblaze.com",
+    "prod": "https://www.demoblaze.com"
+  }
+}
