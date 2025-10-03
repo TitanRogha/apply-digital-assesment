@@ -1,7 +1,7 @@
 {
-  "name": "playwright-demoblaze-automation",
+  "name": "playwright-demoblaze-automation for Apply Digital assesment",
   "version": "1.0.0",
-  "description": "Playwright automation tests for DemoBlaze website",
+  "description": "Playwright automation tests for apply digital assesment",
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
@@ -10,8 +10,8 @@
     "test:firefox": "npx playwright test --project=firefox",
     "test:webkit": "npx playwright test --project=webkit",
     "test:mobile": "npx playwright test --project=mobile",
-    "test:qa": "BASE_URL=https://qa.demoblaze.com npx playwright test",
-    "test:prod": "BASE_URL=https://www.demoblaze.com npx playwright test",
+    "test:qa": "BASE_URL=https://automationexercise.com/ npx playwright test",
+    "test:prod": "BASE_URL=https://automationexercise.com/ npx playwright test",
     "test:debug": "npx playwright test --debug",
     "test:ui": "npx playwright test --ui",
     "show-report": "npx playwright show-report",
@@ -27,7 +27,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.40.0",
+    "@faker-js/faker": "^10.0.0",
+    "@playwright/test": "^1.55.1",
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0"
   }

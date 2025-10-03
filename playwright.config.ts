@@ -1,80 +1,102 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
+ * Playwright Test Configuration
+ * 
+ * This file sets up global configurations, browser projects, 
+ * and reporting options for running Playwright tests.
+ * 
+ * For more details, see: https://playwright.dev/docs/test-configuration
+ */
+
+/**
+ * Load environment variables from a .env file if needed.
+ * Uncomment the line below if using dotenv.
  */
 // require('dotenv').config();
 
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
 export default defineConfig({
+  // Directory where the test files are located
   testDir: './tests',
-  /* Run tests in files in parallel */
-  fullyParallel: false,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    ['html'],
-    ['json', { outputFile: 'test-results.json' }],
-    ['junit', { outputFile: 'test-results.xml' }]
-  ],
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.BASE_URL || 'https://www.demoblaze.com',
 
-    /* Run in headed mode (set to false for headless) */
+  // Whether to run tests in parallel within a single file
+  fullyParallel: false,
+
+  // Fail the build on CI if test.only is left in the source code
+  forbidOnly: !!process.env.CI,
+
+  // Retry failed tests only on CI
+  retries: process.env.CI ? 2 : 0,
+
+  // Limit the number of workers (parallel processes) on CI
+  workers: process.env.CI ? 1 : 1,
+
+  // Reporters to use for test results
+  reporter: [
+    ['html'], // Generates an HTML report
+    ['json', { outputFile: 'test-results.json' }], // JSON report
+    ['junit', { outputFile: 'test-results.xml' }] // JUnit XML report
+  ],
+
+  // Shared settings for all tests
+  use: {
+    // Base URL for page.goto() calls
+    baseURL: process.env.BASE_URL || 'https://automationexercise.com/',
+
+    // Run tests in headed mode (browser visible)
     headless: false,
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    // Collect trace for the first retry of a failed test
     trace: 'on-first-retry',
-    
-    /* Take screenshot on failure */
+
+    // Take screenshots only on test failures
     screenshot: 'only-on-failure',
-    
-    /* Record video on failure */
+
+    // Record video only on test failures
     video: 'retain-on-failure',
   },
 
-  /* Configure projects for major browsers */
+  // Configure different browser projects
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-      testIgnore: '**/mobile-tests.spec.ts'
-    },
-
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    //   testIgnore: '**/mobile-tests.spec.ts'
-    // },
-
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    //   testIgnore: '**/mobile-tests.spec.ts'
-    // },
-
-    /* Test against mobile viewports. */
-    {
-      name: 'mobile',
+      name: 'chromium', // Google Chrome / Edge-like browsers
       use: { 
-        ...devices['iPhone 12'],
-        // Override to ensure mobile viewport
-        viewport: { width: 390, height: 844 }
+        browserName: 'chromium',
+        viewport: null, // Default viewport (maximized)
+        launchOptions: {
+          args: ['--start-maximized'], // Start browser maximized
+        },
       },
-      testMatch: '**/mobile-tests.spec.ts'
+    },
+    {
+      name: 'firefox', // Mozilla Firefox
+      use: { 
+        browserName: 'firefox',
+        viewport: null,
+        launchOptions: {
+          args: ['--start-maximized'],
+        },
+      },
+    },
+    {
+      name: 'webkit', // Apple Safari
+      use: { 
+        browserName: 'webkit',
+        viewport: null,
+        launchOptions: {
+          args: ['--start-maximized'], // Note: may not affect Safari
+        },
+      },
+    },
+    {
+      name: 'mobile', // Mobile emulation
+      use: { 
+        ...devices['iPhone 12'], // Use built-in device preset
+        viewport: { width: 390, height: 844 }, // Override viewport
+      },
     },
 
-    /* Test against branded browsers. */
+    /* Optional: Test branded browsers (Edge, Chrome) */
     // {
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
@@ -85,7 +107,7 @@ export default defineConfig({
     // },
   ],
 
-  /* Run your local dev server before starting the tests */
+  /* Optional: Run a local dev server before starting tests */
   // webServer: {
   //   command: 'npm run start',
   //   url: 'http://127.0.0.1:3000',

@@ -1,6 +1,6 @@
-# Playwright DemoBlaze Automation Project
+# Playwright Automation Project
 
-This project demonstrates comprehensive test automation using Playwright for the DemoBlaze e-commerce website. It includes cross-browser testing, mobile device emulation, dynamic test data management, and environment-specific configurations.
+This project demonstrates comprehensive test automation using Playwright for the Apply Digital Assesment ecommerce pages. It includes cross-browser testing, mobile device emulation, dynamic test data management, and environment-specific configurations.
 
 ## 🎯 Project Overview
 
@@ -25,21 +25,18 @@ The automation framework validates the complete user journey on DemoBlaze:
 
 ```
 playwright-demoblaze-automation/
-├── data/
-│   └── testData.json              # Test data configuration
 ├── page-objects/
 │   ├── BasePage.ts               # Base page class
 │   ├── HomePage.ts               # Home page interactions
-│   ├── LoginPage.ts              # Login modal interactions
-│   ├── CategoryPage.ts           # Category page interactions
+│   ├── CartPage.ts               # Cart interactions
+│   ├── ProductsPage.ts           # Products page interactions
 │   └── ProductDetailPage.ts      # Product detail page interactions
+│   └── CheckoutPage.ts           # Checkout page interactions
+│   └── Register.ts               # Register Page Interactions
 ├── tests/
-│   ├── complete-user-journey.spec.ts     # Main user journey tests with dynamic registration
-│   ├── basic-functionality.spec.ts       # Cross-browser navigation tests
-│   └── mobile-tests.spec.ts              # Mobile-specific tests
+│   ├── purchaseFlow.spec.ts     # Main user journey for purchase products
 ├── utils/
-│   ├── TestDataHelper.ts         # Test data management utilities
-│   └── CommonHelpers.ts          # Common helper functions
+│   ├── randomData.ts             # Test data management utilities
 ├── playwright.config.ts          # Playwright configuration
 ├── package.json                  # Dependencies and scripts
 ├── tsconfig.json                 # TypeScript configuration
@@ -89,33 +86,23 @@ playwright-demoblaze-automation/
 ### Core Working Tests
 
 ```bash
-# ✅ MAIN USER JOURNEY - Complete registration, login, and navigation
-npm run test tests/complete-user-journey.spec.ts
+# ✅ MAIN USER JOURNEY - Complete purchase flow and registration
+npm run test tests/purchaseFlow.spec.ts
 
-# ✅ BASIC FUNCTIONALITY - Navigation without login (works across all browsers)
-npm run test tests/basic-functionality.spec.ts
-
-# ✅ MOBILE TESTING - Mobile viewport testing
-npm run test:mobile tests/mobile-tests.spec.ts
-```
 
 ### Cross-Browser Testing
 
 ```bash
 # Run working tests on specific browsers
-npm run test:chromium tests/complete-user-journey.spec.ts
-npm run test:firefox tests/complete-user-journey.spec.ts
-npm run test:webkit tests/complete-user-journey.spec.ts
-
-# Run all basic functionality tests across all browsers
-npm run test tests/basic-functionality.spec.ts
-```
+npm run test:chromium tests/purchaseFlow.spec.ts
+npm run test:firefox tests/purchaseFlow.spec.ts
+npm run test:webkit tests/purchaseFlow.spec.ts
 
 ### Environment-Specific Testing
 
 ```bash
 # Test against different environments
-BASE_URL=https://www.demoblaze.com npm test tests/complete-user-journey.spec.ts
+BASE_URL=https://www.demoblaze.com npm test tests/purchaseFlow.spec.ts
 
 # Custom environment
 BASE_URL=https://custom.demoblaze.com npm test
@@ -125,7 +112,7 @@ BASE_URL=https://custom.demoblaze.com npm test
 
 ```bash
 # Run tests in debug mode with step-by-step execution
-npm run test:debug tests/complete-user-journey.spec.ts
+npm run test:debug tests/tests/purchaseFlow.spec.ts
 
 # View test reports
 npm run show-report
@@ -149,45 +136,6 @@ npm run test:ui
 - **Cross-Browser**: ✅ Chromium, Firefox, WebKit
 - **Status**: FULLY WORKING
 
-#### 2. Basic Functionality (`tests/basic-functionality.spec.ts`)
-- **Features Validated**:
-  - Page title verification ("STORE")
-  - Homepage elements visibility
-  - Category navigation without login
-  - Product Detail Page access
-  - Add to cart button verification
-- **Cross-Browser**: ✅ Chromium, Firefox, WebKit
-- **Status**: FULLY WORKING
-
-#### 3. Mobile Testing (`tests/mobile-tests.spec.ts`)
-- **Features Validated**:
-  - Mobile viewport (iPhone 12) functionality
-  - Touch-friendly navigation
-  - Product browsing on mobile
-- **Browser**: ✅ WebKit (mobile project)
-- **Status**: WORKING
-
-## 📊 Test Data Management
-
-### Dynamic Test Data
-Test credentials and product information are stored in `data/testData.json`:
-
-```json
-{
-  "users": {
-    "testuser": {
-      "username": "testuser",
-      "password": "testpass"
-    }
-  },
-  "products": {
-    "monitor": {
-      "name": "Apple monitor 24",
-      "category": "Monitors"
-    }
-  }
-}
-```
 
 ### Environment Variables
 Override test data using environment variables:
@@ -201,10 +149,10 @@ The framework supports multiple environments:
 
 ```bash
 # QA Environment
-BASE_URL=https://qa.demoblaze.com npm test
+BASE_URL=https://automationexercise.com npm test
 
 # UAT Environment  
-BASE_URL=https://uat.demoblaze.com npm test
+BASE_URL=https://automationexercise.com npm test
 
 # Production (default)
 npm test
@@ -262,15 +210,11 @@ Configured for:
    - Ensure all browsers are installed: `npm run install`
    - Check network connectivity to demoblaze.com
 
-2. **Login failures**:
-   - Verify test credentials in `data/testData.json`
-   - Check if the website structure has changed
-
-3. **Mobile tests not working**:
+2. **Mobile tests not working**:
    - Ensure mobile project is configured in `playwright.config.ts`
    - Run: `npm run test:mobile`
 
-4. **Environment variables not working**:
+3. **Environment variables not working**:
    - Copy `.env.example` to `.env`
    - Restart your terminal after setting environment variables
 
@@ -278,7 +222,7 @@ Configured for:
 
 ```bash
 # Run single test file
-npx playwright test tests/demoblaze-user-journey.spec.ts
+npx playwright test tests/purchaseFlow.spec.ts
 
 # Run specific test
 npx playwright test --grep "User Journey"
@@ -305,7 +249,7 @@ This project is licensed under the ISC License - see the package.json file for d
 ## 📞 Support
 
 For questions or issues:
-1. Check the troubleshooting section above
+1. Reach me in https://www.linkedin.com/in/luisecastillod/
 2. Review Playwright documentation: https://playwright.dev/
 3. Create an issue in the repository
 

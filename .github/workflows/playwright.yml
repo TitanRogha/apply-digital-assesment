@@ -27,7 +27,7 @@ jobs:
     - name: Run Playwright tests
       run: npm test
       env:
-        BASE_URL: https://www.demoblaze.com
+        BASE_URL: https://automationexercise.com
         TEST_USERNAME: testuser
         TEST_PASSWORD: testpass
         
