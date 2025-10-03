@@ -1,5 +1,5 @@
 {
-  "name": "playwright-demoblaze-automation for Apply Digital assesment",
+  "name": "playwright-automation for Apply Digital assesment",
   "version": "1.0.0",
   "description": "Playwright automation tests for apply digital assesment",
   "main": "index.js",
@@ -21,8 +21,8 @@
     "playwright",
     "automation",
     "testing",
-    "typescript",
-    "demoblaze"
+    "typescript"
+    
   ],
   "author": "",
   "license": "ISC",
@@ -30,6 +30,11 @@
     "@faker-js/faker": "^10.0.0",
     "@playwright/test": "^1.55.1",
     "@types/node": "^20.0.0",
+    "chrome-launcher": "^1.2.1",
+    "lighthouse": "^12.8.2",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.3.0",
     "typescript": "^5.0.0"
   }
 }

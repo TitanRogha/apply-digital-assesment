@@ -7,6 +7,8 @@ import { CheckoutPage } from '../page-objects/CheckoutPage';
 import { RegisterPage } from '../page-objects/RegisterPage';
 import { getRandomQuantity } from '../utils/randomData';
 import { faker } from '@faker-js/faker';
+import { runLighthouse } from '../utils/lighthouseRunner';
+
 
 test.describe('Add the third product to cart and go to Register/Login', () => {
   let homePage: HomePage;
@@ -102,4 +104,14 @@ test.describe('Add the third product to cart and go to Register/Login', () => {
     // Logout after completing the order
     await homePage.logout();
   });
+
+  test('Home page accessibility and performance', async ({ page, baseURL }) => {
+    // Run Lighthouse
+    const scores = await runLighthouse(page.url());
+  
+    // Optional validations according to minimal criteria
+    expect(scores.accessibility).toBeGreaterThanOrEqual(0.9);
+    expect(scores.performance).toBeGreaterThanOrEqual(0.8);
+  });
+
 });

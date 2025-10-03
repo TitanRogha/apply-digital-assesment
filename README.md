@@ -4,7 +4,7 @@ This project demonstrates comprehensive test automation using Playwright for the
 
 ## 🎯 Project Overview
 
-The automation framework validates the complete user journey on DemoBlaze:
+The automation framework validates the complete user journey on apply-digital :
 1. User login and authentication
 2. Category navigation (Monitors)
 3. Product Detail Page (PDP) validation
@@ -24,7 +24,7 @@ The automation framework validates the complete user journey on DemoBlaze:
 ## 📁 Project Structure
 
 ```
-playwright-demoblaze-automation/
+playwright-apply-digital-automation/
 ├── page-objects/
 │   ├── BasePage.ts               # Base page class
 │   ├── HomePage.ts               # Home page interactions
@@ -56,7 +56,7 @@ playwright-demoblaze-automation/
 1. **Clone the repository:**
    ```bash
    git clone <repository-url>
-   cd playwright-demoblaze-automation
+   cd playwright-apply-digital-automation
    ```
 
 2. **Install dependencies:**
@@ -77,12 +77,6 @@ playwright-demoblaze-automation/
 
 ## 🎮 Running Tests
 
-### Quick Demo
-```bash
-# Run the complete demo (recommended first run)
-./demo.sh
-```
-
 ### Core Working Tests
 
 ```bash
@@ -97,15 +91,16 @@ npm run test tests/purchaseFlow.spec.ts
 npm run test:chromium tests/purchaseFlow.spec.ts
 npm run test:firefox tests/purchaseFlow.spec.ts
 npm run test:webkit tests/purchaseFlow.spec.ts
+```
 
 ### Environment-Specific Testing
 
 ```bash
 # Test against different environments
-BASE_URL=https://www.demoblaze.com npm test tests/purchaseFlow.spec.ts
-
+BASE_URL=https://automationexercise.com npm test tests/purchaseFlow.spec.ts
+```
 # Custom environment
-BASE_URL=https://custom.demoblaze.com npm test
+BASE_URL=https://automationexercise.comnpm test
 ```
 
 ### Debug and Reporting
@@ -208,7 +203,7 @@ Configured for:
 
 1. **Tests failing on first run**:
    - Ensure all browsers are installed: `npm run install`
-   - Check network connectivity to demoblaze.com
+   - Check network connectivity to https://automationexercise.com
 
 2. **Mobile tests not working**:
    - Ensure mobile project is configured in `playwright.config.ts`
